@@ -1,0 +1,43 @@
+<html>
+    <head>
+        <title>birthdayyy</title>
+    </head>
+    <body>
+        <h1>birthdayyy</h1>
+        <form id="subscribeForm">
+            <input type="text" name="email" id="emailInput" placeholder="Email" />
+            <button type="submit">Submit</button>
+        </form>
+        <p id="submitStatus"></p>
+    </body>
+
+    <script>
+        const form = document.getElementById("subscribeForm");
+        const emailInput = document.getElementById("emailInput");
+        const submitStatus = document.getElementById("submitStatus");
+
+        form.addEventListener("submit", async (e) => {
+            e.preventDefault();
+            const email = emailInput.value;
+
+            try{
+                const response = await fetch("/api/subscribe", {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({ email: email }),
+                });
+
+                const data = await response.json();
+
+                if (!response.ok) {
+                    throw new Error(data.message);
+                }
+
+                submitStatus.textContent = "Subscribed successfully";
+            } catch (error) {
+                submitStatus.textContent = error.message;
+            }
+            
+        })
+    </script>
+</html>

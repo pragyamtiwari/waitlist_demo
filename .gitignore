@@ -1,0 +1,12 @@
+# Dependencies
+/node_modules
+
+# Vercel
+.vercel
+
+# Environment variables
+.env
+.env.local
+
+# Mac system files
+.DS_Store
