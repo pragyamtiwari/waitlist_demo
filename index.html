@@ -18,6 +18,7 @@
 
         form.addEventListener("submit", async (e) => {
             e.preventDefault();
+            submitStatus.textContent = "Subscribing...";
             const email = emailInput.value;
 
             try{
